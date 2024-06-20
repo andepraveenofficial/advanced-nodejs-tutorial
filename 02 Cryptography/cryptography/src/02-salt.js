@@ -21,8 +21,6 @@ console.log(hashedPassword1);  // 92cf882606206bdf4957d4854ee9511bd41bec91b54346
 
 // with same salt we can generate the same hashedPassword;
 
-
-
 const users = [];
 
 function signup(email, password) {
