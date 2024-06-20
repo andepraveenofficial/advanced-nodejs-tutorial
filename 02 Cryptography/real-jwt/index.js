@@ -22,18 +22,12 @@ const header = {
 };
 const jsonHeader = JSON.stringify(header);
 
-const base64UrlEncodedHeader = Buffer.from(jsonHeader).toString('base64')
-    .replace(/\+/g, '-') // Replace + with -
-    .replace(/\//g, '_') // Replace / with _
-    .replace(/=/g, ''); // Remove padding =
+const base64UrlEncodedHeader = Buffer.from(jsonHeader).toString('base64url');
 
 console.log('JWT Header:', base64UrlEncodedHeader);
 
 /* -----> Payload <----- */
-const base64UrlEncodedPayload = Buffer.from(jsonPayload).toString('base64')
-    .replace(/\+/g, '-') // Replace + with -
-    .replace(/\//g, '_') // Replace / with _
-    .replace(/=/g, ''); // Remove padding =
+const base64UrlEncodedPayload = Buffer.from(jsonPayload).toString('base64url')
 
 console.log('JWT Payload:', base64UrlEncodedPayload);
 
@@ -44,9 +38,6 @@ const secretKey = 'my-secrete-code';
 const hmac = createHmac('sha256', secretKey);
 hmac.update(`${base64UrlEncodedHeader}.${base64UrlEncodedPayload}`);
 const signature = hmac.digest('base64')
-    .replace(/\+/g, '-') // Replace + with -
-    .replace(/\//g, '_') // Replace / with _
-    .replace(/=/g, ''); // Remove padding =
 
 console.log("HMAC Signature:", signature);
 
@@ -68,9 +59,6 @@ const receivedSignature = parts[2];
 const hmacVerify = createHmac('sha256', secretKey);
 hmacVerify.update(`${receivedHeader}.${receivedPayload}`);
 const computedSignature = hmacVerify.digest('base64')
-    .replace(/\+/g, '-') // Replace + with -
-    .replace(/\//g, '_') // Replace / with _
-    .replace(/=/g, ''); // Remove padding =
 
 console.log("Computed Signature:", computedSignature);
 
