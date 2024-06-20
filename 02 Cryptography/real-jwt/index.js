@@ -1,4 +1,4 @@
-const { createHash, createHmac } = require('crypto');
+const { createHmac } = require('crypto');
 
 /* -----> Create JWT token <----- */
 console.log("-----> Create JWT token <----- ");
