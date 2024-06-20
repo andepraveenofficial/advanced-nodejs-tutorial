@@ -28,7 +28,7 @@ const secretKey = 'my-secrete-code';
 const signature = createHmac('sha256', secretKey).update(base64Payload).digest('hex');
 console.log("HMAC Signature:", signature);
 
-// 06 JWT token (Standard format: header.payload.signature)
+// 06 JWT token (payload.signature.hash)
 const jwtToken = `${base64Payload}.${signature}.${hash}`;
 console.log("JWT Token:", jwtToken);
 
